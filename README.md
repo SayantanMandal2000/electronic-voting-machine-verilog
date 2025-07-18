@@ -195,7 +195,7 @@ This simulation validates both the **functional correctness** and the **security
 
 The Register-Transfer Level (RTL) schematic of the EVM implementation is shown below:
 
-![EVM RTL Block Diagram]([images/EVM_RTL.png](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_RTL.png))
+![EVM RTL Block Diagram](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_RTL.png))
 
 ### 🔍 Description
 
