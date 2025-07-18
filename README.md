@@ -42,6 +42,52 @@ This repository contains the RTL implementation of a **secure Electronic Voting 
 
 ---
 
+## 🔁 EVM System Flowchart
+
+The flowchart below illustrates the complete functional behavior of the Electronic Voting Machine (EVM), from voter validation to result display:
+
+![EVM Flowchart](images/EVM_FlowChart.png)
+
+### 🧭 Flow Description
+
+1. **System Start**  
+   The EVM begins in either **voting mode** (`mode = 1`) or **result mode** (`mode = 0`), as set by the polling officer.
+
+---
+
+### 🗳️ Voting Mode (`mode = 1`)
+- Voter is prompted to **enter their UID**.
+- The system:
+  - Verifies the **validity of the UID**.
+  - Checks if the voter has **already voted**.
+- If UID is **invalid**, the voter is rejected.
+- If UID is **valid** and the voter hasn't voted:
+  - Voter selects from **4 candidates**.
+  - Corresponding vote bank is incremented.
+  - Voter is marked as having **voted** (status flag = 1).
+
+---
+
+### 🔐 Result Mode (`mode = 0`)
+- Election officer is prompted to **enter a 4-bit password**.
+- FSM verifies the password:
+  - If incorrect → retry prompt.
+  - If correct → **results are decrypted and displayed**.
+- The officer can then **press candidate buttons** to see:
+  - Total votes received by each candidate.
+  - Final results including winner and total votes.
+
+---
+
+### 🛡️ Security Measures
+- **Encrypted UID validation**
+- **One vote per UID enforcement**
+- **FSM-controlled password-protected result access**
+
+This ensures the voting process is **transparent**, **tamper-resistant**, and **secure**.
+
+---
+
 ## 🧰 Tools & Technologies
 
 | Component          | Description                                   |
