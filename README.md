@@ -83,6 +83,6 @@ This project is an excellent case study for:
 
 - 📘 **Verilog RTL Design**: FSM control, voting logic, encryption/decryption  
 - 💻 **FPGA Programming**: Synthesis, real-time interfacing, I/O handling  
-- 🔄 **Hardware-Software Co-Design**: OLED, push-buttons, SPI protocol  
+- 🔄 **Hardware-Software Co-Design**: OLED, push-buttons
 - 🛠️ **Debugging & Simulation**: VIO observation, GTKWave waveform analysis  
 - 🔐 **Security-Driven Digital Logic**: Password protection & UID validation  
