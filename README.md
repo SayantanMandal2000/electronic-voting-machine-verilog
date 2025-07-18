@@ -8,6 +8,7 @@ This repository contains the RTL implementation of a **secure Electronic Voting 
 
 ---
 
+
 ## 📌 Project Features
 
 - 🔐 **Encrypted Voter UID Verification**
@@ -85,6 +86,56 @@ The flowchart below illustrates the complete functional behavior of the Electron
 - **FSM-controlled password-protected result access**
 
 This ensures the voting process is **transparent**, **tamper-resistant**, and **secure**.
+
+---
+
+## 🧠 FSM: Password Pattern Recognition for Secure Access
+
+The Finite State Machine (FSM) depicted below controls **password validation** for result access in the EVM system.
+
+![EVM FSM]([images/EVM_FSM.png](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_FSM.png))
+
+### 🔒 FSM Overview
+
+This FSM is designed to validate a **4-bit binary password pattern** entered via **two push buttons** (B1 and B0):
+
+- **B1** and **B0** represent individual binary bits (e.g., B1=1, B0=0).
+- The system moves through states `S0` to `S4` in a predefined sequence, checking input values at each stage.
+- Only the correct **input pattern** leads to **state S4**, where the result is unlocked.
+
+---
+
+### 🧾 FSM Behavior by States
+
+| State | Description                              | Inputs (B1,B0) | Outputs (Open, Error) |
+|-------|------------------------------------------|----------------|------------------------|
+| S0    | Initial/Reset State                      | -              | Open=0, Error=0        |
+| S1    | First correct input received             | B1=1, B0=0     | Open=0, Error=0        |
+| S2    | Second correct input                     | B1=0, B0=1     | Open=0, Error=0        |
+| S3    | Third correct input                      | B1=1, B0=1     | Open=0, Error=0        |
+| S4    | Final correct input – Password accepted  | B1=0, B0=0     | Open=1, Error=0        |
+| E1-E4 | Error states triggered by wrong sequence | Various        | Open=0, Error=1 (in E4)|
+
+---
+
+### ❌ Error Detection Logic
+
+- If at **any point** an incorrect bit combination is entered:
+  - FSM transitions to one of the error states (`E1`, `E2`, `E3`, `E4`).
+  - The system remains **locked** (`Open=0`) and triggers an error flag (`Error=1` in `E4`).
+  - User must restart the password sequence.
+
+---
+
+### ✅ Correct Password Flow
+
+- Correct sequence:  
+  **S0 → S1 → S2 → S3 → S4** with inputs:  
+  `B1B0 = 10 → 01 → 11 → 00`
+
+- At **S4**, output `Open = 1` unlocks the results.
+
+This ensures **only authorized personnel** with knowledge of the binary password pattern can access and display election results securely.
 
 ---
 
