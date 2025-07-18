@@ -46,7 +46,7 @@ This repository contains the RTL implementation of a **secure Electronic Voting 
 
 The flowchart below illustrates the complete functional behavior of the Electronic Voting Machine (EVM), from voter validation to result display:
 
-![EVM Flowchart](images/EVM_FlowChart.png)
+![EVM Flowchart](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_FlowChart.png)
 
 ### 🧭 Flow Description
 
