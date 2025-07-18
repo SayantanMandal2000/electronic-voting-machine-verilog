@@ -13,7 +13,6 @@ This repository contains the RTL implementation of a **secure Electronic Voting 
 
 - 🔐 **Encrypted Voter UID Verification**
 - 🧠 **FSM-Controlled Mode Switching & Password Authentication**
-- 🖥️ **OLED Display for Voting Info and Results**
 - 💡 **LED Output Indicators**
 - 🧾 **VVPAT-style vote confirmation**
 - ⌨️ **Push-Button Based Input with Debouncing**
@@ -93,7 +92,7 @@ This ensures the voting process is **transparent**, **tamper-resistant**, and **
 
 The Finite State Machine (FSM) depicted below controls **password validation** for result access in the EVM system.
 
-![EVM FSM][images/EVM_FSM.png](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_FSM.png)
+![EVM FSM](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_FSM.png)
 
 ### 🔒 FSM Overview
 
