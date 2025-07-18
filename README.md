@@ -138,6 +138,59 @@ This ensures **only authorized personnel** with knowledge of the binary password
 
 ---
 
+## 📈 Functional Simulation Waveform
+
+The following waveform shows the behavior of the EVM during simulation, captured using Vivado simulator:
+
+![EVM Simulation Waveform](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_Waveform.png)
+
+### 🧪 Key Signal Descriptions
+
+| Signal Name        | Description |
+|--------------------|-------------|
+| `clock`            | System clock signal driving all synchronous elements. |
+| `reset`            | Active-high reset signal to initialize the system. |
+| `c1`, `c2`, `c3`, `c4` | Candidate selection inputs, active high when a vote is cast. |
+| `mode`             | Voting/Result mode selector (`1` = Voting mode, `0` = Result mode). |
+| `enter`            | Voter confirmation button to submit UID or cast a vote. |
+| `vUID[5:0]`        | Voter’s entered UID in encrypted 6-bit format. |
+| `voted_status`     | Flag indicating if the voter has already cast their vote. |
+| `votecount1/2/3/4` | Vote counters for Candidate 1 to Candidate 4 respectively. |
+| `Result`           | Final result based on majority vote after password is entered. |
+| `total_votes`      | Cumulative count of all validated votes cast. |
+
+---
+
+### 🧭 Simulation Behavior
+
+1. **Clock & Reset**  
+   - The system initializes with `reset = 1` briefly and returns to normal operation.
+
+2. **Voting Mode Active (`mode = 1`)**  
+   - Voters enter their `vUID` via switches.
+   - After validation, they cast their vote using `c1` to `c4` inputs.
+   - `enter` signal confirms the UID and candidate selection.
+
+3. **Vote Count Update**  
+   - As votes are cast, corresponding `votecount` values increment.
+   - `voted_status` is set to prevent repeat voting.
+
+4. **Result Mode (`mode = 0`)**  
+   - After password is successfully validated via FSM, `Result` and `total_votes` are displayed.
+
+---
+
+### ✅ Observations
+
+- Encrypted UIDs are accepted only once — indicating successful duplicate vote rejection.
+- Vote counters increment correctly per candidate input.
+- Result decoding logic works correctly based on majority count.
+- Waveform timing shows FSM transitions and input synchronization clearly.
+
+This simulation validates both the **functional correctness** and the **security constraints** of the EVM design.
+
+---
+
 ## 🧰 Tools & Technologies
 
 | Component          | Description                                   |
