@@ -191,6 +191,61 @@ This simulation validates both the **functional correctness** and the **security
 
 ---
 
+## 🏗️ RTL Schematic Overview
+
+The Register-Transfer Level (RTL) schematic of the EVM implementation is shown below:
+
+![EVM RTL Block Diagram]([images/EVM_RTL.png](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_RTL.png))
+
+### 🔍 Description
+
+This RTL view is generated from the synthesized Verilog design in Vivado. It shows the interconnected modules that make up the **Electronic Voting Machine (EVM)** on FPGA.
+
+---
+
+### 🧩 Module Breakdown
+
+| Module         | Description |
+|----------------|-------------|
+| **top**        | Top-level wrapper integrating all submodules and I/O connections. |
+| **Control_unit (CU)** | Main FSM-based logic controller that handles mode switching, UID checking, vote validation, and password control. |
+| **v1 (VIO)**   | Vivado Virtual I/O core used for monitoring and driving signals (e.g., internal registers, debug outputs) in real-time. |
+| **OLED SPI**   | SPI driver module that controls the OLED display using a clocked serial interface (`oled_sck`, `oled_sda`, etc.). |
+| **led[7:0]**   | Output LEDs to show current mode, result, or candidate vote confirmation. |
+
+---
+
+### 🔗 I/O and Signal Flow
+
+- **Inputs:**
+  - `UID[5:0]`: Voter UID input (manual in prototype)
+  - `candidate1` to `candidate4`: Voting inputs
+  - `enter`, `mode`: Control buttons
+  - `B0`, `B1`: FSM password input (push buttons)
+  - `clock`, `reset`: System control signals
+
+- **Internal Connections:**
+  - UID and candidate selection are routed to the `Control_unit`.
+  - FSM output signals (`valid_uid`, `already_voted`, `vote_count`, etc.) are monitored via `VIO` and drive logic to display results or lock access.
+  - OLED driver receives status data for display updates (via SPI).
+
+- **Outputs:**
+  - `led[7:0]`: Reflect current system status (e.g., error, result unlocked, candidate voted).
+  - `OLED` SPI signals control the external display module.
+  
+---
+
+### 🔐 Security Path
+
+- FSM logic inside `Control_unit` ensures:
+  - Only unique and valid UIDs are accepted.
+  - Password verification is handled through sequential FSM using B0, B1.
+  - Result visibility is controlled based on mode and password validation.
+
+This RTL diagram reflects a clean, modular hardware architecture built for **secure, real-time vote management on FPGA**.
+
+---
+
 ## 🧰 Tools & Technologies
 
 | Component          | Description                                   |
