@@ -93,7 +93,7 @@ This ensures the voting process is **transparent**, **tamper-resistant**, and **
 
 The Finite State Machine (FSM) depicted below controls **password validation** for result access in the EVM system.
 
-![EVM FSM]([images/EVM_FSM.png](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_FSM.png))
+![EVM FSM]([images/EVM_FSM.png](https://github.com/SayantanMandal2000/electronic-voting-machine-verilog/blob/main/sim/EVM_FSM.png)
 
 ### 🔒 FSM Overview
 
